@@ -75,3 +75,7 @@ Example of Training NER
       to have to label words to train a model. I've searched for training sets
       and they are surprisingly difficult to come by. We may have to just
       start training our own models with data we find is relevant.
+
+Problem Solve Process
+---------------------
+raw text -> tokenized(preprocessing) -> stemming lemmatization remove punctuation normalizecase(preprocessing) -> classifier like SVM, LDA Algorithm to filt related information -> NLP training -> Subject words predict
