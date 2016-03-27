@@ -83,8 +83,12 @@ Separation
       and they are surprisingly difficult to come by. We may have to just
       start training our own models with data we find is relevant.
 
-Problem Solve Process
+Problem Solution Process
 ---------------------
+*Two Problems*
+ * Identify the subject(the person) of a sentence
+ * Identify the relationship between the subject and the author
+ 
 .. [#first] Collect raw text (exist dataset, exist data collectors, format attributes)
 .. [#second] tokenized (design tokens)
 .. [#third] stemming lemmatization remove punctuation normalizecase (data filters)
