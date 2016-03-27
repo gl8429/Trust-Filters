@@ -20,20 +20,23 @@ Thing to do
 
 Trust Filters
 -------------
-* Authority
+Authority
+^^^^^^^^^^^
      - Talk about the disease
      - Do not talk about their disease
      - Measure is not a popularity measure
-     
-* Experience
+Experience
+^^^^^^^^^^
      - For a user, numeber of posts (twitter)
-     
-* Expertise
+Expertise
+^^^^^^^^^
      - The probability of the content of topic for a specific user. 
        P(c_t|u) = P(u|c_t) * P(c_t)
-* Reputation
+Reputation
+^^^^^^^^^^
      - A popularity contest (PageRank)
-* Identity
+Identity
+^^^^^^^^
      - Classify if a user is talking about themself or not    
 
        *Identify subject of a sentence*
@@ -49,7 +52,8 @@ Trust Filters
 
        *distance* 
            - Real measure of distance find data that are geotagged
-* Separation
+Separation
+^^^^^^^^^^
     - Seperate different Named Entity Recognizer and absorb the relationship between them.
 
       *Range*
