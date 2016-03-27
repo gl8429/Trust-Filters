@@ -85,9 +85,9 @@ Separation
 
 Problem Solve Process
 ---------------------
-.. [#first] raw text 
-.. [#second] tokenized(preprocessing)
-.. [#third] stemming lemmatization remove punctuation normalizecase(preprocessing)
-.. [#fourth] classifier like SVM, LDA Algorithm to filt related information
-.. [#fifth] NLP training
-.. [#sixth] Subject words predict
+.. [#first] Collect raw text (exist dataset, exist data collectors, format attributes)
+.. [#second] tokenized (design tokens)
+.. [#third] stemming lemmatization remove punctuation normalizecase (data filters)
+.. [#fourth] classifier like SVM, LDA Algorithm to filt related information (get rid of noise)
+.. [#fifth] NLP training (stanford-NLP tookit)
+.. [#sixth] Subject words predict (experiment and result)
