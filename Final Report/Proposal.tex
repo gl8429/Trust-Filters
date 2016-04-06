@@ -50,10 +50,7 @@
 Huihuang Zheng \&
 Guangyu Lin
 
-\bigskip
-
-
-\noindent \textbf{Proposed Topic:} %Write a brief description of the topic you wish to work on. This should be done in 40 words or less. 
+\noindent \textbf{Proposed Topic: Trust Filters - Identity \& Seperation} %Write a brief description of the topic you wish to work on. This should be done in 40 words or less. 
 
 \bigskip
 
@@ -62,17 +59,27 @@ Ray Mooney
 
 \bigskip
 \noindent \textbf{Course Name:}  
-Natural Language Processing
+CS 388 Natural Language Processing
 
 \bigskip 
 
 \section*{Proposal}
+"You are what you tweet"~\cite{TWEET01} reflects that we can use social media data to measure users' characteristics, include public health. We design a fused trust filter model to analyze the social network, such as Twitter, WordPress, Wiki, Instagram and etc. The model is hierarchical, with the top-most level representing author-level attributes and the lower levels characterizing authors’ documents and words. As is customary in the topic modeling literature, we shall refer to a users’ posts on social media platforms as “documents”. The model assigns topic and category distributions to authors as well as to the documents written by the authors. Topics are identified by the algorithm, while categories are labels for words which are known in advance. Some of the categories are flu-related, identity, and family-related words. 
 
-\bigskip
+The process of the project is collecting raw text, tokenizing words, stemming lemmatization and removing punctuation normalize case, designing classifier like SVM and LDA Algorithm to retrieve related information and using NLP to do subject words predict.
+
+For NLP part, we have three problems to solve,
+\begin{enumerate}
+\item Retrieve related information from corpus
+\item Identify the subject(the person) of a sentence
+\item Identify the relationship between the subject and the author
+\end{enumerate}
+For the first problem, we want to use LDA or SVM algorithms to do the document summarization and information filter. For the second problem, we want to classify if a user is talking about themselves or not. We would like to use Name Entity Recognizer to identify the subject of the sentence. For the third problem, which is more complicate, we want to seperate different Named Entity Recognizer and absorb the relationship between them. And their range could be from 0 to 1.
+
 
 \begin{thebibliography}{99}
 % NOTE: change the "9" above to "99" if you have MORE THAN 10 references.
-
+\bibitem{TWEET01} Paul, Michael J., and Mark Dredze. "You are what you Tweet: Analyzing Twitter for public health." ICWSM 20 (2011): 265-272.
 
 \end{thebibliography}
 
@@ -84,3 +91,4 @@ Natural Language Processing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document} 
 
+]
