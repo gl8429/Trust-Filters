@@ -1,0 +1,21 @@
+{
+	"data" : [
+		{
+			"node_id" : id,
+			"edges" : [
+				{
+					"edge_type" : "wordpress",
+					"edges" : [edge1_node_id, edge2_node_id]
+				}
+			],
+			"metadata" : {
+				"messageID" : id,
+				"content" : message,
+				"timeStamp" : timeStamp,
+				"location" : location,
+				"tag" : [tag1, tag2],
+				"mentionID" : [node_id1, node_id2]
+			}
+		}
+	]
+}
