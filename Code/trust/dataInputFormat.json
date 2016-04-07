@@ -1,21 +1,54 @@
 {
-	"data" : [
-		{
-			"node_id" : "#id",
-			"edges" : [
-				{
-					"edge_type" : "wordpress",
-					"edges" : ["#node_id", "#node_id"]
-				}
-			],
-			"metadata" : {
-				"messageID" : "#id",
-				"content" : "message",
-				"timeStamp" : "timeStamp",
-				"location" : "location",
-				"tag" : ["tag1", "tag2"],
-				"mentionID" : ["#node_id, "#node_id"]
-			}
-		}
-	]
+    "edges": [
+        {
+            "data": [
+                "edge1_node_id",
+                "edge2_node_id"
+            ],
+            "service": "wordpress",
+            "type": "comment"
+        },
+        {
+            "data": [
+                "edge1_node_id",
+                "edge2_node_id"
+            ],
+            "service": "wordpress",
+            "type": "like"
+        }
+    ],
+    "metadata": {
+        "services": [
+            {
+                "display_name": "John Doe",
+                "location": {
+                    "coordinates": "56.32...",
+                    "location_name": "Texas"
+                },
+                "profile_url": "http//....com/username",
+                "service": "twitter",
+                "service_id": "twitter_id",
+                "service_url": "http://",
+                "username": "twitter_name"
+            }
+        ]
+    },
+    "node_id": "id",
+    "posts": [
+        {
+            "date": "12-10-12",
+            "extracted_features": {
+                "count": "count",
+                "feature_name": "word"
+            },
+            "location": {
+                "coordinates": "56.32...",
+                "location_name": "Texas"
+            },
+            "mentions": [],
+            "post_id": "postid",
+            "tags": [],
+            "text": "blah blah"
+        }
+    ]
 }
