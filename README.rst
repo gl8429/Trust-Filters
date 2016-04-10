@@ -90,20 +90,12 @@ Problem Solution Process
  * Identify the relationship between the subject and the author
  
 .. [#first] Collect raw text (exist dataset, exist data collectors, format attributes)
-.. [#second] tokenized (design tokens)
-.. [#third] stemming lemmatization remove punctuation normalizecase (data filters)
+.. [#second] Raw text of the document is split into sentences (Sentence segmenter)
+.. [#third] Each sentence is further subdivided into words, while stemming lemmatization remove punctuation normalizecase (data filters, tokenizer)
 .. [#fourth] classifier like SVM, LDA Algorithm to filt related information (get rid of noise)
-.. [#fifth] NLP training (stanford-NLP tookit)
-.. [#sixth] Subject words predict (experiment and result)
-
-Notes From NLTK
----------------
-
-.. [#first] Raw text of the document is split into sentences (Sentence segmenter)
-.. [#second] Each sentence is further subdivided into words (tokenizer)
-.. [#third] Each sentence is tagged with part-of-speech tags
-.. [#fourth] Search for mentions of potentially interesting entities in each sentence (Name entity detection)
-.. [#fifth] Search for likely relations between different entities in the test (relation detection)
-
+.. [#fifth] Each sentence is tagged with part-of-speech tags
+.. [#sixth] Search for mentions of potentially interesting entities in each sentence (Name entity detection)
+.. [#seventh] Search for likely relations between different entities in the test (relation detection)
+.. [#eighth] Subject words predict (experiment and result)
 .. image:: Figures/ie-architecture.png
             :width: 30
