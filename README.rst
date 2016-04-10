@@ -104,3 +104,6 @@ Notes From NLTK
 .. [#third] Each sentence is tagged with part-of-speech tags
 .. [#fourth] Search for mentions of potentially interesting entities in each sentence (Name entity detection)
 .. [#fifth] Search for likely relations between different entities in the test (relation detection)
+
+.. image:: Figures/ie-architecture.png
+            :width: 30
