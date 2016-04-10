@@ -99,3 +99,10 @@ Problem Solution Process
 .. [#eighth] Subject words predict (experiment and result)
 .. image:: Figures/ie-architecture.png
             :width: 30
+
+Useful Link of README's Format(rst)
+-----------------------------------
+Our README's format is reStructuredText(.rst), there are two useful handbook for us to generate README below.
+sphinx-memo
+`Sphinx Memo <http://rest-sphinx-memo.readthedocs.org/en/latest/ReST.html>`_
+`Sphinx CheatSheet <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
