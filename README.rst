@@ -95,3 +95,12 @@ Problem Solution Process
 .. [#fourth] classifier like SVM, LDA Algorithm to filt related information (get rid of noise)
 .. [#fifth] NLP training (stanford-NLP tookit)
 .. [#sixth] Subject words predict (experiment and result)
+
+Notes From NLTK
+---------------
+
+.. [#first] Raw text of the document is split into sentences (Sentence segmenter)
+.. [#second] Each sentence is further subdivided into words (tokenizer)
+.. [#third] Each sentence is tagged with part-of-speech tags
+.. [#fourth] Search for mentions of potentially interesting entities in each sentence (Name entity detection)
+.. [#fifth] Search for likely relations between different entities in the test (relation detection)

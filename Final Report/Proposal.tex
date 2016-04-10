@@ -72,16 +72,17 @@ CS 388 Natural Language Processing
 
 \noindent \textbf{Approach}: The process of the project is collecting raw text, tokenizing words, stemming lemmatization and removing punctuation normalize case, designing classifier like SVM and LDA Algorithm to retrieve related information and using NLP to do subject words predict. For NLP part, there are three core problems to solve,
 \begin{enumerate}[itemsep=0mm]
-  \item Retrieve related information from corpus (influenza in our project but our model can handle other topics)
+  \item Retrieve related information from corpus (influenza in our project but the model can handle other topics)
   \item Identify the subject(the person) of a sentence
   \item Identify the relationship between the subject and the author
 \end{enumerate}
 
-For the first problem, we want to use LDA or SVM algorithms to do the document summarization and information filter. For the second problem, we want to classify if a user is talking about themselves or not. We would like to use Name Entity Recognizer to identify the subject of the sentence. For the third problem, which is more complicate, we want to seperate different Named Entity Recognizer and absorb the relationship between them. And their range could be from 0 to 1. We will use LDA from NLTK and SVM from Libsvm.
+For the first problem, we want to use LDA or SVM algorithms to do the document summarization and information filter. For the second problem is classifying if a user is talking about themselves or not. We would like to use Name Entity Recognizer to identify the subject of the sentence. For the third problem, which is more complicate, we want to seperate different Named Entity Recognizer and absorb the relationship between them. And their range could be from 0 to 1. We will use LDA from NLTK and SVM from Libsvm.
 
 \bigskip
 
 \noindent \textbf{Evaluation}: we have already collected raw text data from Twitter and WordPress. These data are the project from CiD. The data will be labeled so we can evaluate our model and compare with other algorithms.
+\vspace{-5mm}
 
 \begin{thebibliography}{99}
 % NOTE: change the "9" above to "99" if you have MORE THAN 10 references.
