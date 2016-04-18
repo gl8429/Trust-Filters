@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{multirow}
+
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\pagestyle{empty}
+\usepackage{color}
+
+\usepackage{enumitem}
+%\usepackage[all,dvips]{xy}
+
+\setlength{\textheight}{8.5in} \setlength{\topmargin}{0.0in}
+\setlength{\headheight}{0.0in} \setlength{\headsep}{0.0in}
+\setlength{\leftmargin}{0.5in}
+\setlength{\oddsidemargin}{0.0in}
+%\setlength{\parindent}{1pc}
+\setlength{\textwidth}{6.5in}
+%\linespread{1.6}
+
+\newtheorem{definition}{Definition}
+\newtheorem{problem}{Problem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{empty}
+
+%\bigskip
+%\bigskip
+
+\centerline{\textbf{\Large{Final Report Proposal}}}
+
+\bigskip
+%\bigskip
+
+
+\noindent \textbf{Name:} %Your name goes here.
+Guangyu Lin \&
+Huihuang Zheng \&
+Ge Gao
+
+
+\noindent \textbf{Proposed Topic:  Sentiment Analysis in Twitter: Tweet classification according to a two-point scale with Named Entity Recognizer} %Write a brief description of the topic you wish to work on. This should be done in 40 words or less.
+
+%\bigskip
+
+\noindent \textbf{Instructor:} %Write the name of any professor(s) you think you might want to work with on this topic. You may leave this section blank if you don't know.
+Ray Mooney
+
+%\bigskip
+\noindent \textbf{Course Name:}
+CS 388 Natural Language Processing
+
+\bigskip
+
+\noindent \textbf{Introduction}: Tweets and texts are often used to share opinions and sentiments that people have about what is going on in the world around them. We believe that a freely available, annotated corpus that can be used as a common testbed is needed in order to promote research that will lead to a better understanding of how sentiment is conveyed in tweets and texts.  Our primary goal in this task is to create such a resource: a corpus of tweets marked with their message-level polarity, in general and towards a specific topic, with adding Named Entity Recogniser as pre-process.
+\bigskip
+
+\noindent \textbf{Problem Description}: Given a tweet known to be about a given topic, classify whether the tweet conveys a positive or a negative sentiment towards the topic, which also required to filter out tweets that were not about the topic. We train and test with or without adding Named Entity Recogniser as pre-process.
+
+\bigskip
+
+\noindent \textbf{Evaluation}:As such, it is thus a binary classification task, in which each tweet must be classified as belonging to exactly one of the two classes C=\{Positive, Negative\}, which also required to filter out tweets that were not about the topic. As an evaluation measure, for this task we will adopt macroaveraged recall, i.e.,
+
+\begin{equation} \label{eu_eqn}
+\rho ^{PN} = \frac{\rho ^{Pos}+\rho ^{Neg}  }{2}
+\end{equation}
+$\rho ^{Pos}$ defines as the fraction of Positive tweets that are predicted to be such; in terms of the confusion matrix of Table, this means that $\rho ^{Pos}$ = $\frac{PP}{PP+ NP}$. $\rho ^{PN}$ ranges in [0,1], where 1 is achieved only by the perfect classifier (the classifier that correctly classifies all items), 0 is achieved only by the perverse classifier (the classifier that misclassifies all items), while 0.5 is
+\begin{itemize}
+\item[-] the value obtained by a trivial classifier (i.e., the classifier that assigns all tweets to the same class - be it Positive or Negative), and\item[-] the expected value of a random classifier.
+\end{itemize}
+
+The advantage of $\rho ^{PN}$ over 'standard' accuracy is that it is more robust to class imbalance, since for standard accuracy the score of the majority-class classifier is the relative frequency (aka 'prevalence') of the majority class, that may be much higher than 0.5 if the test set is imbalanced.The advantage of $\rho ^{PN}$ over F1 is that it is more robust to class imbalance, since for F1 the score of the trivial acceptor may be much higher than 0.5 if the test set is imbalanced and the Positive class is the majority class. Another advantage of $\rho ^{PN}$ over F1 is that $\rho ^{PN}$ is invariant with respect to switching Positive with Negative, while F1 is not.
+
+\begin{center}
+\begin{tabular}{|c |c|c|c| } 
+ \hline
+
+\multicolumn{2}{|c|}{ \multirow{2}{*}{}} & \multicolumn{2}{|c|}{Actual} \\ \hline
+ \multicolumn{2}{|c|}{} & Pos & Neg \\ \hline
+\multirow{2}{*}{Predicted} & Pos & PP & PN \\ 
+& Neg & NP & NN \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{-5mm}
+
+\begin{thebibliography}{99}
+% NOTE: change the "9" above to "99" if you have MORE THAN 10 references.
+\bibitem{TWEET01} Bella, A., Ferri, C., Hernandez-Orallo, J., \& Ramirez-Quintana, M. J. (2010). Quantification via probability estimators. In Proceedings of the 11th IEEE International Conference on Data Mining (ICDM 2010), pp. 737-742, Sydney, AU.
+
+\bibitem{twitter} Esuli, A., \& Sebastiani, F. (2010b). Sentiment quantification. IEEE Intelligent Systems, 25(4), 72-75.
+
+\bibitem{twitter1} Wei Gao and Fabrizio Sebastiani. Tweet Sentiment: From Classification to Quantification. Proceedings of the 6th ACM/IEEE International Conference on Advances in Social Networks Analysis and Mining (ASONAM 2015), Paris, FR, 2015.
+
+\end{thebibliography}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+]
