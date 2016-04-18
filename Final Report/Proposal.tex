@@ -13,6 +13,8 @@
 \usepackage{amsthm}
 \pagestyle{empty}
 \usepackage{color}
+
+\usepackage{enumitem}
 %\usepackage[all,dvips]{xy}
 
 \setlength{\textheight}{8.5in} \setlength{\topmargin}{0.0in}
@@ -37,45 +39,50 @@
 \begin{document}
 \thispagestyle{empty}
 
-\bigskip
-\bigskip
+%\bigskip
+%\bigskip
 
 \centerline{\textbf{\Large{Final Report Proposal}}}
 
 \bigskip
-\bigskip
+%\bigskip
 
 
 \noindent \textbf{Name:} %Your name goes here.
-Huihuang Zheng \&
-Guangyu Lin
+Guangyu Lin \&
+Huihuang Zheng
 
-\noindent \textbf{Proposed Topic: Trust Filters - Identity \& Seperation} %Write a brief description of the topic you wish to work on. This should be done in 40 words or less. 
 
-\bigskip
+\noindent \textbf{Proposed Topic: Trust Filters - Identity \& Seperation} %Write a brief description of the topic you wish to work on. This should be done in 40 words or less.
 
-\noindent \textbf{Instructor:} %Write the name of any professor(s) you think you might want to work with on this topic. You may leave this section blank if you don't know. 
+%\bigskip
+
+\noindent \textbf{Instructor:} %Write the name of any professor(s) you think you might want to work with on this topic. You may leave this section blank if you don't know.
 Ray Mooney
 
-\bigskip
-\noindent \textbf{Course Name:}  
+%\bigskip
+\noindent \textbf{Course Name:}
 CS 388 Natural Language Processing
 
-\bigskip 
+\bigskip
 
-\section*{Proposal}
-"You are what you tweet"~\cite{TWEET01} reflects that we can use social media data to measure users' characteristics, include public health. We design a fused trust filter model to analyze the social network, such as Twitter, WordPress, Wiki, Instagram and etc. The model is hierarchical, with the top-most level representing author-level attributes and the lower levels characterizing authors‚Äô documents and words. As is customary in the topic modeling literature, we shall refer to a users‚Äô posts on social media platforms as ‚Äúdocuments‚Äù. The model assigns topic and category distributions to authors as well as to the documents written by the authors. Topics are identified by the algorithm, while categories are labels for words which are known in advance. Some of the categories are flu-related, identity, and family-related words. 
+\noindent \textbf{Introduction}: Your social network information can reveal a lot. In this project, we will implement part of a fused trust filter model to analyze the social network, such as Twitter, WordPress, Wiki, Instagram and etc. Our work is mainly inspired by "You are what you tweet"~\cite{TWEET01} and from Center for Identity (Dtra Project), which reflects that we can use social media data to measure users' characteristics, including public health. The model is hierarchical, with the top-most level representing author-level attributes and the lower levels characterizing authors°Ø documents and words. As is customary in the topic modeling literature, we shall refer to a users°Ø posts on social media platforms as °∞documents°±. The model assigns topic and category distributions to authors as well as to the documents written by the authors. Topics are identified by the algorithm, while categories are labels for words which are known in advance. We will handle the separation and identity parts of this fused trust filter model.
 
-The process of the project is collecting raw text, tokenizing words, stemming lemmatization and removing punctuation normalize case, designing classifier like SVM and LDA Algorithm to retrieve related information and using NLP to do subject words predict.
+\bigskip
 
-For NLP part, we have three problems to solve,
-\begin{enumerate}
-\item Retrieve related information from corpus
-\item Identify the subject(the person) of a sentence
-\item Identify the relationship between the subject and the author
+\noindent \textbf{Approach}: The process of the project is collecting raw text, tokenizing words, stemming lemmatization and removing punctuation normalize case, designing classifier like SVM and LDA Algorithm to retrieve related information and using NLP to do subject words predict. For NLP part, there are three core problems to solve,
+\begin{enumerate}[itemsep=0mm]
+  \item Retrieve related information from corpus (influenza in our project but the model can handle other topics)
+  \item Identify the subject(the person) of a sentence
+  \item Identify the relationship between the subject and the author
 \end{enumerate}
-For the first problem, we want to use LDA or SVM algorithms to do the document summarization and information filter. For the second problem, we want to classify if a user is talking about themselves or not. We would like to use Name Entity Recognizer to identify the subject of the sentence. For the third problem, which is more complicate, we want to seperate different Named Entity Recognizer and absorb the relationship between them. And their range could be from 0 to 1.
 
+For the first problem, we want to use LDA or SVM algorithms to do the document summarization and information filter. For the second problem is classifying if a user is talking about themselves or not. We would like to use Name Entity Recognizer to identify the subject of the sentence. For the third problem, which is more complicate, we want to seperate different Named Entity Recognizer and absorb the relationship between them. And their range could be from 0 to 1. We will use LDA from NLTK and SVM from Libsvm.
+
+\bigskip
+
+\noindent \textbf{Evaluation}: we have already collected raw text data from Twitter and WordPress. These data are the project from CiD. The data will be labeled so we can evaluate our model and compare with other algorithms.
+\vspace{-5mm}
 
 \begin{thebibliography}{99}
 % NOTE: change the "9" above to "99" if you have MORE THAN 10 references.
@@ -89,6 +96,6 @@ For the first problem, we want to use LDA or SVM algorithms to do the document s
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{document} 
+\end{document}
 
 ]

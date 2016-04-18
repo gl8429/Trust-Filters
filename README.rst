@@ -90,8 +90,17 @@ Problem Solution Process
  * Identify the relationship between the subject and the author
  
 .. [#first] Collect raw text (exist dataset, exist data collectors, format attributes)
-.. [#second] tokenized (design tokens)
-.. [#third] stemming lemmatization remove punctuation normalizecase (data filters)
-.. [#fourth] classifier like SVM, LDA Algorithm to filt related information (get rid of noise)
-.. [#fifth] NLP training (stanford-NLP tookit)
-.. [#sixth] Subject words predict (experiment and result)
+.. [#second] Design classifier like SVM, LDA Algorithm to filt related information (get rid of noise)
+.. [#third] Raw text of the document is split into sentences (Sentence segmenter)
+.. [#fourth] Each sentence is further subdivided into words, while stemming lemmatization remove punctuation normalizecase (data filters, tokenizer)
+.. [#fifth] Each sentence is tagged with part-of-speech tags
+.. [#sixth] Search for mentions of potentially interesting entities in each sentence (Name entity detection)
+.. [#seventh] Search for likely relations between different entities in the test (relation detection)
+.. [#eighth] Subject words predict (experiment and result)
+.. image:: Figures/ie-architecture.png
+            :width: 30
+
+Useful Link of README's Format(rst)
+-----------------------------------
+Our README's format is reStructuredText(.rst), there are two useful handbook,`Sphinx Memo <http://rest-sphinx-memo.readthedocs.org/en/latest/ReST.html>`_
+ `Sphinx CheatSheet <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_ ,for us to generate README below.
