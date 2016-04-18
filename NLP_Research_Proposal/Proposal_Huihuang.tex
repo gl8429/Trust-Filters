@@ -1,0 +1,100 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{iccv}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\iccvfinalcopy % *** Uncomment this line for the final submission
+
+\def\iccvPaperID{****} % *** Enter the ICCV Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ificcvfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Add Name Entity Recognizer to Convolutional Neural Network }
+
+\author{
+Guangyu Lin\\
+UTEID: gl8429\\
+{\tt\small glin@utexas.edu} \\
+\and
+Ge Gao\\
+UTEID: gg24984\\
+{\tt\small gegao1118@utexas.edu} \\
+\and
+Huihuang Zheng\\
+UTEID: hz4674\\
+{\tt\small huihuang@utexas.edu} \\
+}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+%\and
+%Second Author\\
+%Institution2\\
+%First line of institution2 address\\
+%\tt\small secondauthor@i2.org}
+%}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+%%%%%%%%% ABSTRACT
+%\begin{abstract}
+%This
+%\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+Traditionally, \textit{word2vec} \cite{mikolov2013efficient} will map same words to same vectors. Some information may be lose. For example, word "Apple" will be mapped by \textit{word2vec} ignoring the entity "Apple" means a kind of fruits or the company. \textbf{We are going to propose a framework of using word2vec + NER as input of CNN}. We think our model can get better performance in NLP tasks involving name entity. Our framework will be evaluated in TREC \cite{li2006learning} question dataset, which involves classifying a question into 6 question types.
+
+\section{Proposed Method}
+\subsection{Traditional Method}
+Traditional method maps words $w$ to vectors:
+$$word2vec:w \rightarrow v $$
+Then the $v \in \mathbb{R}^k$ is the $k$-dimensional word vector corresponding to the $i$-th word in the sentence. A sentence of length $n$ (padded where necessary is represented as)
+$$v_{1:n} = v_1 \oplus v_2 \oplus v_3 ... \oplus v_n$$
+
+In general, let $v_{i:i+j}$ refers to the concatenation of word vectors $v_i, v_{i+1}, ..., v_{i+j}$. A convolutional filter of Convolutional Neural Network (CNN)  \cite{kim2014convolutional} takes fixed size of input of $\mathbb{R}^{kh}$. The filter is applied to each possible window of words of the sentence $\{x_{1:h}, x_{2:h+1}, ..., x_{n_h+1:n}\}$ and extract features, do max pooling, and full connected layer to get output of CNN.
+
+\subsection{Our Approach}
+We are going to add \textit{Name Entity Recognizor} (NER) to the word expression $v$. Let our word vector be $v' \in \mathbb{R}^{k+1}$. We are going to add one dimension to \textit{word2vec} expression. Let
+$$v' = [v, e]$$
+where $v$ is the output vector of \textit{word2vec} and $e$ is the label number for name entity. Then we will modify CNN architectures in Kim's paper \cite{kim2014convolutional}. Their CNN convolutional filters take input of $\mathbb{R}^{kh}$ and we will change input size into $\mathbb{R}^{(k+1)h}$. 
+
+\section{Evaluation}
+\subsection{Software Detail}
+We will use \textit{word2vec} trained model from Mikolov \cite{mikolov2013efficient} on 100 billion words of Google News and are publicly available. We will build our framework using NER from Stanford NER software \cite{finkel2005incorporating} and deep learning tool from Theano \cite{Bastien-Theano-2012}. Since Kim's work\cite{kim2014convolutional} has Github published code using Theano \cite{Bastien-Theano-2012}, it will be easy for us to build baseline to compare and modify their CNN architecture to ours. We need to train a new CNN for our input and compare the performance to Kim's CNN.
+\subsection{Dataset}
+We are going to compare accuracy of our method and Kim's CNN in TREC \cite{li2006learning}. The task involves classifying a question into 6 question types (whether the question is about person, location, numeric information, etc.). We choose this dataset because of two reasons. The fact that Name Entity Recognizer can classify person, location may help us in this task. Second, in Kim's paper \cite{kim2014convolutional}, he also used this database and reported his accuracy so it will be easy for us to compare fairly. 
+
+
+
+%-------------------------------------------------------------------------
+
+
+
+{\small
+\nocite{*}
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}
