@@ -2,6 +2,7 @@ import sys
 import nltk,os
 import nltk.tag.stanford as st
 import gensim, logging
+import re
 
 # Set Environment
 os.environ["CLASSPATH"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/Trust-Filters/Code/stanford-ner-2014-06-16/stanford-ner.jar"
@@ -30,7 +31,7 @@ def main():
     with open(inFile, 'r') as fileInput:
         sentences = list()
         for sentence in fileInput:
-            originSentence = sentence.split()[1:]
+            originSentence = clean_sentence(sentence.split()[1:])
             strings = st.tag(originSentence)
             for string in strings:
                 NERDict[string[0]] = NER.index(string[1])
@@ -72,7 +73,17 @@ def main():
 
     #fileOutput = open(nerFile, 'w')
 
-    
+def clean_str(string):
+    if '/' in string:
+        return '-'.join(string.split('/'))
+    else:
+        return string
+
+def clean_sentence(sentence):
+    result = list()
+    for word in sentence:
+        result.append(clean_str(word))
+    return result
 
 if __name__ == "__main__":
     main()
