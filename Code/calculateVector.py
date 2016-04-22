@@ -3,7 +3,7 @@ import nltk,os
 import nltk.tag.stanford as st
 import gensim, logging
 import re
-
+nltk.internals.config_java(options='-xmx2G')
 # Set Environment
 os.environ["CLASSPATH"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/Trust-Filters/Code/stanford-ner-2014-06-16/stanford-ner.jar"
 os.environ["STANFORD_MODELS"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/Trust-Filters/Code/stanford-ner-2014-06-16/classifiers/"
