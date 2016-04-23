@@ -107,13 +107,13 @@ def combineRevs(revs1, revs2):
 def combineVocab(vocab1, vocab2):
     vocab = defaultdict(float)
     for word in vocab1:
-	if word not in vocab2:
-            vocab[word] = vocab1[word]
-        else:
+	if word in vocab2:          
             vocab[word] = vocab1[word] + vocab2[word]
+        else:
+            vocab[word] = vocab1[word]
     for word in vocab2:
 	if word not in vocab1:
-            vocab[word] = vocab1[word]
+            vocab[word] = vocab2[word]
     return vocab
 
 def combineWordVectors(w1, w2, w_idx_map1, w_idx_map2, vocab, k=301):
@@ -146,20 +146,19 @@ def main():
 
     train_revs, train_vocab = build_data_cv(trainFileName, 0, selectClass)
     test_revs, test_vocab = build_data_cv(testFileName, 1, selectClass)
-    
+
     revs=combineRevs(train_revs, test_revs)
     vocab=combineVocab(train_vocab, test_vocab)
 
     train_suffix = trainFileName.split('/')[-1]
-    train_W = getW('w/' + train_suffix)
+    train_W = getW('w/' + train_suffix, len(train_vocab))
     
     test_suffix = testFileName.split('/')[-1]
-    test_W = getW('w/' + test_suffix)
+    test_W = getW('w/' + test_suffix, len(test_vocab))
  
     train_word_idx_map = getWordIdxMap('index/' + train_suffix)
     test_word_idx_map = getWordIdxMap('index/' + test_suffix)
     
-    print len(train_W[0]), len(train_W[1])
     W, word_idx_map = combineWordVectors(train_W, test_W, train_word_idx_map, test_word_idx_map, vocab)
 
     rand_vecs = {}

@@ -12,20 +12,10 @@ NLP_Research_Proposal/*.aux
 NLP_Research_Proposal/*.bbl
 NLP_Research_Proposal/*.dvi
 Code/stanford-ner-2014-06-16
-<<<<<<< HEAD
 Code/index
 Code/w
-Code/model
 Code/raw_data
 Code/vectors
-=======
-
-Code/index/
 Code/model/
-Code/raw_data/
 Code/run.sh
-Code/vectors/
-Code/w/
-
-*~
->>>>>>> b51c979cc2b9eeff6d0cde7e014133df03436e8a
+Code/mr.p
