@@ -43,11 +43,11 @@ def build_data_cv(fileName, fileType, classSelect = True):
             revs.append(datum)
     return revs, vocab
 
-def getW(fileName):
-    w = list()
-    with open(fileName, 'r') as f:
-        for line in f:
-            w.append(line[ : len(line) - 1])
+def getW(fileName, wordNum):
+    w = np.zeros((wordNum, 301),dtype=np.float32)
+    with open(fileName) as f:
+        for i,line in enumerate(f):
+            w[i,:]=line.split()
     return w
 
 def getWordIdxMap(fileName):
@@ -151,15 +151,14 @@ def main():
     vocab=combineVocab(train_vocab, test_vocab)
 
     train_suffix = trainFileName.split('/')[-1]
-    train_W = getW('w/' + train_suffix)
+    train_W = getW('w/' + train_suffix, len(train_vocab))
     
     test_suffix = testFileName.split('/')[-1]
-    test_W = getW('w/' + test_suffix)
+    test_W = getW('w/' + test_suffix, len(test_vocab))
  
     train_word_idx_map = getWordIdxMap('index/' + train_suffix)
     test_word_idx_map = getWordIdxMap('index/' + test_suffix)
     
-    print len(train_W), len(train_vocab)
     W, word_idx_map = combineWordVectors(train_W, test_W, train_word_idx_map, test_word_idx_map, vocab)
 
     rand_vecs = {}
