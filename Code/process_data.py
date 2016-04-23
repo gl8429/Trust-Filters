@@ -41,11 +41,11 @@ def build_data_cv(fileName, cv = 10, classSelect = True):
             revs.append(datum)
     return revs, vocab
 
-def getW(fileName):
-    w = list()
-    with open(fileName, 'r') as f:
-        for line in f:
-            w.append(line[ : len(line) - 1])
+def getW(fileName, wordNum):
+    w = np.zeros((wordNum, 301),dtype=np.float32)
+    with open(fileName) as f:
+        for i,line in enumerate(f):
+            w[i,:]=line.split()
     return w
 
 def getWordIdxMap(fileName):
@@ -61,9 +61,12 @@ def main():
     args = sys.argv[1]
     revs, vocab = build_data_cv(args)
     suffix = args.split('/')[-1]
-    w = getW('w/' + suffix)
+    w = getW('w/' + suffix, len(vocab))
     word_idx_map = getWordIdxMap('index/' + suffix)
-    print(word_idx_map)
+    print('word_idx_map: ' + str(len(word_idx_map)))
+    print('w: ' + str(len(w)) + ' col: ' + str(len(w[0])))
+    print('vocab: ' + str(len(vocab)))
+    print('revs: ' + str(len(revs)))
 
 if __name__ == "__main__":
     main()

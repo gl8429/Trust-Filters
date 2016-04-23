@@ -12,3 +12,8 @@ NLP_Research_Proposal/*.aux
 NLP_Research_Proposal/*.bbl
 NLP_Research_Proposal/*.dvi
 Code/stanford-ner-2014-06-16
+Code/index
+Code/w
+Code/model
+Code/raw_data
+Code/vectors
