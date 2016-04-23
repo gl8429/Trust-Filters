@@ -118,8 +118,8 @@ def train_conv_net(datasets,
     new_data = np.random.permutation(new_data)
     n_batches = new_data.shape[0]/batch_size
     
-    n_train_batches = n_batches # Not split train/val
-    #n_train_batches = int(np.round(n_batches*0.9)) # Split train/val
+    #n_train_batches = n_batches # Not split train/val
+    n_train_batches = int(np.round(n_batches*0.9)) # Split train/val
     #divide train set into train/val sets 
     test_set_x = datasets[1][:,:img_h] 
     test_set_y = np.asarray(datasets[1][:,-1],"int32")
@@ -311,32 +311,34 @@ if __name__=="__main__":
         datasets = make_idx_data_cv(revs, word_idx_map, 1, max_l=56,k=301, filter_h=5)
         perf = train_conv_net(datasets,
                               U,
+                              img_w=301, 
                               lr_decay=0.95,
                               filter_hs=[3,4,5],
                               conv_non_linear="relu",
                               hidden_units=[100,6], 
                               shuffle_batch=True, 
-                              n_epochs=25, 
+                              n_epochs=50, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5])
-        print "cv: " + str(i) + ", perf: " + str(perf)
+        print "perf: " + str(perf)
         results.append(perf)
-    else
+    else:
         datasets = make_idx_data_cv(revs, word_idx_map, 1, max_l=56,k=301, filter_h=5)
         perf = train_conv_net(datasets,
                               U,
+                              img_w=301, 
                               lr_decay=0.95,
                               filter_hs=[3,4,5],
                               conv_non_linear="relu",
                               hidden_units=[100,50], 
                               shuffle_batch=True, 
-                              n_epochs=25, 
+                              n_epochs=50, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5])
-        print "cv: " + str(i) + ", perf: " + str(perf)
+        print "perf: " + str(perf)
         results.append(perf)
     print str(np.mean(results))
