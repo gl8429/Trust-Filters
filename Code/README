@@ -10,3 +10,7 @@ Execution file:
 	process_data.py :- prepare data for CNN
 	retrieveLabeled.py :- retrieve classes and fines
 	NER.ipynb :- expirment process
+
+Data Folder on Dropbox:
+	https://www.dropbox.com/sh/i2nunof1baersai/AACrKWlUMSwzLbFSC_53dq5ha?dl=0
+	You can download the data from the link above.
