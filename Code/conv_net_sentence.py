@@ -46,7 +46,8 @@ def train_conv_net(datasets,
                    conv_non_linear="relu",
                    activations=[Iden],
                    sqr_norm_lim=9,
-                   non_static=True):
+                   non_static=True,
+                   val_data_fraction=0):
     """
     Train a simple conv net
     img_h = sentence length (padded where necessary)
@@ -118,8 +119,9 @@ def train_conv_net(datasets,
     new_data = np.random.permutation(new_data)
     n_batches = new_data.shape[0]/batch_size
     
-    n_train_batches = n_batches # Not split train/val
-    #n_train_batches = int(np.round(n_batches*0.9)) # Split train/val
+    
+
+    n_train_batches = int(np.round(n_batches* (1 - val_data_fraction))) # Split train/val, if valid_data_fraction == 0, then there will be no valid set
     #divide train set into train/val sets 
     test_set_x = datasets[1][:,:img_h] 
     test_set_y = np.asarray(datasets[1][:,-1],"int32")
@@ -179,10 +181,15 @@ def train_conv_net(datasets,
         val_losses = [val_model(i) for i in xrange(n_val_batches)]
         val_perf = 1- np.mean(val_losses)                        
         print('epoch: %i, training time: %.2f secs, train perf: %.2f %%, val perf: %.2f %%' % (epoch, time.time()-start_time, train_perf * 100., val_perf*100.))
-        if val_perf >= best_val_perf:
+        if n_train_batches == n_batches: # No valid data
+            test_loss = test_model_all(test_set_x,test_set_y)
+            test_perf = 1 - test_loss
+            print('test perf: %.2f %%' %(test_perf*100))
+        elif val_perf >= best_val_perf:
             best_val_perf = val_perf
             test_loss = test_model_all(test_set_x,test_set_y)        
-            test_perf = 1- test_loss         
+            test_perf = 1 - test_loss   
+            print('Get best valid accuracy, test perf: %.2f %%' %(test_perf*100))      
     return test_perf
 
 def shared_dataset(data_xy, borrow=True):
@@ -311,32 +318,36 @@ if __name__=="__main__":
         datasets = make_idx_data_cv(revs, word_idx_map, 1, max_l=56,k=301, filter_h=5)
         perf = train_conv_net(datasets,
                               U,
+                              img_w=301, 
                               lr_decay=0.95,
                               filter_hs=[3,4,5],
                               conv_non_linear="relu",
                               hidden_units=[100,6], 
                               shuffle_batch=True, 
-                              n_epochs=25, 
+                              n_epochs=10000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
-                              dropout_rate=[0.5])
-        print "cv: " + str(i) + ", perf: " + str(perf)
+                              dropout_rate=[0.5],
+                              val_data_fraction=0.01)
+        print "perf: " + str(perf)
         results.append(perf)
-    else
+    else:
         datasets = make_idx_data_cv(revs, word_idx_map, 1, max_l=56,k=301, filter_h=5)
         perf = train_conv_net(datasets,
                               U,
+                              img_w=301, 
                               lr_decay=0.95,
                               filter_hs=[3,4,5],
                               conv_non_linear="relu",
                               hidden_units=[100,50], 
                               shuffle_batch=True, 
-                              n_epochs=25, 
+                              n_epochs=10000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
-                              dropout_rate=[0.5])
-        print "cv: " + str(i) + ", perf: " + str(perf)
+                              dropout_rate=[0.5],
+                              val_data_fraction=0.01)
+        print "perf: " + str(perf)
         results.append(perf)
     print str(np.mean(results))

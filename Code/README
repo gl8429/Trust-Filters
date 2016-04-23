@@ -4,6 +4,9 @@ Execution file:
 	NER.ipynb :- expirment process (You don't need to run, unless you want to have a look at the process of generating the dataset)
         *process_data.py :- prepare data for CNN (Change some code for your CNN), run as below, you should give the file that you want to run.
 			You should also down load the dataset below(dropbox share folder) into the same directory of process_data.py
+	conv_net_sentence.py :- interface for training CNN
+	run.sh :- bash file that you can run process_data.py and conv_net_sentence.py. You can see an example of how to call
+                        process_data.py and conv_net_sentence.py here or run the bash file directly	
 
 Data Folder on Dropbox:
 	https://www.dropbox.com/sh/i2nunof1baersai/AACrKWlUMSwzLbFSC_53dq5ha?dl=0
@@ -16,3 +19,27 @@ Data Folder on Dropbox:
 		     { `word` : `line#` }
 	`w` :-  w paramerters
 		[ ( 300 dimensional array + 1 NER label ) each line ] * # of words in vocaburary
+
+Usage:
+	process_data.py:
+		python process_data.py train_raw_data_file_path test_raw_data_file_path "-type"/"-fine"
+                a example for train_raw_data_file_path is raw_data/train5500.txt 
+		a example for train_raw_data_file_path is raw_data/test.txt
+		last parameter is string -type or -fine. -type means we are going to do experiments for 6 types and -fine means fine type for 50
+
+	conv_net_sentence.py:
+                See calling of train_conv_netin in main function of conv_net_sentence.py to change the parameters of CNN.
+                Some parameters may be important for running experiments:
+			batch_size: [default=50], depends on how many GPU memory size do you have, higher batch_size means running faster while more GPU memory
+			n_epochs: how many iteration you are goint to train the CNN 			
+                Examples:
+		        THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python conv_net_sentence.py -nonstatic -rand
+			THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python conv_net_sentence.py -static -word2vec
+			THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python conv_net_sentence.py -nonstatic -word2vec
+		        This will run the CNN-rand, CNN-static, and CNN-nonstatic models respectively in the paper
+                The output will be like:
+			epoch: 1, training time: 16.49 secs, train perf: 81.80 %, val perf: 78.32 %
+			epoch: 2, training time: 16.12 secs, train perf: 82.53 %, val perf: 76.74 %
+			epoch: 3, training time: 16.16 secs, train perf: 91.87 %, val perf: 81.37 %
+
+                
