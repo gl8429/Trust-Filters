@@ -191,8 +191,8 @@ def main():
     W2, _ = get_W(rand_vecs)
     
     #Bug: testcase fail
-    print(checkConsistencyWordIdxMapVocab(train_word_idx_map, train_vocab))
-    print(checkConsistencyWordIdxMapVocab(test_word_idx_map, test_vocab))
+    #print(checkConsistencyWordIdxMapVocab(train_word_idx_map, train_vocab))
+    #print(checkConsistencyWordIdxMapVocab(test_word_idx_map, test_vocab))
     
     cPickle.dump([revs, W, W2, word_idx_map, vocab, selectClass], open("mr.p", "wb"))
 

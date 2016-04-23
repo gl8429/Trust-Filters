@@ -47,7 +47,8 @@ def train_conv_net(datasets,
                    activations=[Iden],
                    sqr_norm_lim=9,
                    non_static=True,
-                   val_data_fraction=0):
+                   val_data_fraction=0,
+                   top_k=1):
     """
     Train a simple conv net
     img_h = sentence length (padded where necessary)
@@ -154,8 +155,10 @@ def train_conv_net(datasets,
         test_layer0_output = conv_layer.predict(test_layer0_input, test_size)
         test_pred_layers.append(test_layer0_output.flatten(2))
     test_layer1_input = T.concatenate(test_pred_layers, 1)
-    test_y_pred = classifier.predict(test_layer1_input)
-    test_error = T.mean(T.neq(test_y_pred, y))
+    #test_y_pred = classifier.predict(test_layer1_input)
+    #test_error = T.mean(T.neq(test_y_pred, y))
+    test_y_pred = classifier.predict_p(test_layer1_input)
+    test_error = 1 - T.mean(T.any(T.eq(T.argsort(test_y_pred, axis=1)[:, -top_k:], y.dimshuffle(0, 'x')), axis=1))
     test_model_all = theano.function([x,y], test_error, allow_input_downcast = True)   
     
     #start training over mini-batches
@@ -329,7 +332,8 @@ if __name__=="__main__":
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.01)
+                              val_data_fraction=0.01,
+                              top_k=1)
         print "perf: " + str(perf)
         results.append(perf)
     else:
@@ -347,7 +351,8 @@ if __name__=="__main__":
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.01)
+                              val_data_fraction=0.01,
+                              top_k=1)
         print "perf: " + str(perf)
         results.append(perf)
     print str(np.mean(results))

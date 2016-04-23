@@ -1,9 +1,0 @@
-loading data... data loaded!
-model architecture: CNN-static
-using: word2vec vectors
-[('image shape', 64, 301), ('filter shape', [(100, 1, 3, 301), (100, 1, 4, 301), (100, 1, 5, 301)]), ('hidden_units', [100, 6]), ('dropout', [0.5]), ('batch_size', 50), ('non_static', False), ('learn_decay', 0.95), ('conv_non_linear', 'relu'), ('non_static', False), ('sqr_norm_lim', 9), ('shuffle_batch', True)]
-... training
-epoch: 1, training time: 5.31 secs, train perf: 32.28 %, val perf: 36.00 %
-Get best valid accuracy, test perf: 41.80 %
-perf: 0.418
-0.418
