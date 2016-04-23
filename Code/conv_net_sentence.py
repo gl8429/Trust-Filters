@@ -182,10 +182,12 @@ def train_conv_net(datasets,
         if n_train_batches == n_batches: # No valid data
             test_loss = test_model_all(test_set_x,test_set_y)
             test_perf = 1 - test_loss
+            print('test perf: %.2f %%' %(test_perf*100))
         elif val_perf >= best_val_perf:
             best_val_perf = val_perf
             test_loss = test_model_all(test_set_x,test_set_y)        
-            test_perf = 1 - test_loss         
+            test_perf = 1 - test_loss   
+            print('Get best valid accuracy, test perf: %.2f %%' %(test_perf*100))      
     return test_perf
 
 def shared_dataset(data_xy, borrow=True):

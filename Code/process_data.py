@@ -141,7 +141,7 @@ def main():
     selectClassStr = sys.argv[3]
     
     selectClass = True
-    if selectClassStr == 'fine':
+    if selectClassStr == '-fine':
         selectClass = False
 
     train_revs, train_vocab = build_data_cv(trainFileName, 0, selectClass)
