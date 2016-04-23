@@ -128,12 +128,22 @@ def combineWordVectors(w1, w2, w_idx_map1, w_idx_map2, vocab, k=301):
             word_idx_map[word] = i
             i += 1
             continue
-        if word in w_idx_map2:
+        elif word in w_idx_map2:
             W[i] = w2[w_idx_map2[word]]
             word_idx_map[word] = i
             i += 1
             continue
+    #print i, len(W) i should equal len(W) + 1
     return W, word_idx_map
+
+# For debug
+def checkConsistenceWordIdxMapVocab(idx_map, vocab):
+    ret = True
+    for word in vocab:
+        if word not in idx_map:
+            ret = False
+            print word #should not print anything if program is right
+    return ret
 
 def main():
     trainFileName = sys.argv[1]
@@ -164,6 +174,10 @@ def main():
     rand_vecs = {}
     add_unknown_words(rand_vecs, vocab)
     W2, _ = get_W(rand_vecs)
+    
+    print checkConsistenceWordIdxMapVocab(train_word_idx_map, train_vocab)
+    print checkConsistenceWordIdxMapVocab(test_word_idx_map, test_vocab)
+    
     cPickle.dump([revs, W, W2, word_idx_map, vocab, selectClass], open("mr.p", "wb"))
 
 if __name__ == "__main__":
