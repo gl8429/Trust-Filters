@@ -29,6 +29,7 @@ def build_data_cv(fileName, fileType, classSelect = True):
             labelClass = sentence.strip().split()[0].split(':')[0]
             labelFine = sentence.strip().split()[0]
             words = sentence.strip().split()[1:]
+            words = clean_sentence(words)
             wordsSet = set(words)
             for word in wordsSet:
                 vocab[word] += 1
@@ -99,7 +100,7 @@ def get_W(word_vecs, k=301):
 def combineRevs(revs1, revs2):
     revs = []
     for rev in revs1:
-	revs.append(rev)
+        revs.append(rev)
     for rev in revs2:
         revs.append(rev)
     return revs
@@ -107,12 +108,12 @@ def combineRevs(revs1, revs2):
 def combineVocab(vocab1, vocab2):
     vocab = defaultdict(float)
     for word in vocab1:
-	if word in vocab2:          
+        if word in vocab2:          
             vocab[word] = vocab1[word] + vocab2[word]
         else:
             vocab[word] = vocab1[word]
     for word in vocab2:
-	if word not in vocab1:
+        if word not in vocab1:
             vocab[word] = vocab2[word]
     return vocab
 
@@ -124,7 +125,7 @@ def combineWordVectors(w1, w2, w_idx_map1, w_idx_map2, vocab, k=301):
     i = 1
     for word in vocab:
         if word in w_idx_map1:
-	    W[i] = w1[w_idx_map1[word]]
+            W[i] = w1[w_idx_map1[word]]
             word_idx_map[word] = i
             i += 1
             continue
@@ -142,8 +143,22 @@ def checkConsistencyWordIdxMapVocab(idx_map, vocab):
     for word in vocab:
         if word not in idx_map:
             ret = False
-            print word #should not print anything if program is right
+            print(word) #should not print anything if program is right
     return ret
+
+# clean string in the sentences
+def clean_sentence(sentence):
+    result = list()
+    for word in sentence:
+        result.append(clean_str(word))
+    return result
+
+# clean `/` in the string and join them by `-` as processing in calculateVector.py before
+def clean_str(string):
+    if '/' in string:
+        return '-'.join(string.split('/'))
+    else:
+         return string
 
 def main():
     trainFileName = sys.argv[1]
@@ -176,8 +191,8 @@ def main():
     W2, _ = get_W(rand_vecs)
     
     #Bug: testcase fail
-    print checkConsistencyWordIdxMapVocab(train_word_idx_map, train_vocab)
-    print checkConsistencyWordIdxMapVocab(test_word_idx_map, test_vocab)
+    print(checkConsistencyWordIdxMapVocab(train_word_idx_map, train_vocab))
+    print(checkConsistencyWordIdxMapVocab(test_word_idx_map, test_vocab))
     
     cPickle.dump([revs, W, W2, word_idx_map, vocab, selectClass], open("mr.p", "wb"))
 
