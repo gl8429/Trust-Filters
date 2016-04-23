@@ -46,7 +46,8 @@ def train_conv_net(datasets,
                    conv_non_linear="relu",
                    activations=[Iden],
                    sqr_norm_lim=9,
-                   non_static=True):
+                   non_static=True,
+                   val_data_fraction=0):
     """
     Train a simple conv net
     img_h = sentence length (padded where necessary)
@@ -118,8 +119,9 @@ def train_conv_net(datasets,
     new_data = np.random.permutation(new_data)
     n_batches = new_data.shape[0]/batch_size
     
-    #n_train_batches = n_batches # Not split train/val
-    n_train_batches = int(np.round(n_batches*0.9)) # Split train/val
+    
+
+    n_train_batches = int(np.round(n_batches* (1 - val_data_fraction))) # Split train/val, if valid_data_fraction == 0, then there will be no valid set
     #divide train set into train/val sets 
     test_set_x = datasets[1][:,:img_h] 
     test_set_y = np.asarray(datasets[1][:,-1],"int32")
@@ -326,7 +328,8 @@ if __name__=="__main__":
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
-                              dropout_rate=[0.5])
+                              dropout_rate=[0.5],
+                              val_data_fraction=0.01)
         print "perf: " + str(perf)
         results.append(perf)
     else:
@@ -343,7 +346,8 @@ if __name__=="__main__":
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
-                              dropout_rate=[0.5])
+                              dropout_rate=[0.5],
+                              val_data_fraction=0.01)
         print "perf: " + str(perf)
         results.append(perf)
     print str(np.mean(results))
