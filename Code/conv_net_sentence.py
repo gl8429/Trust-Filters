@@ -194,7 +194,6 @@ def train_conv_net(datasets,
             top1_loss = test_model_all_top1(test_set_x, test_set_y)
             top1_perf = 1 - top1_loss
             print('test top %d perf: %.2f %%, top 1 perf: %.2f %%' %(top_k, test_perf*100, top1_perf*100))
-            print()
         elif val_perf >= best_val_perf:
             best_val_perf = val_perf
             test_loss = test_model_all(test_set_x,test_set_y)        
@@ -339,9 +338,9 @@ if __name__=="__main__":
                               n_epochs=2000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
-                              batch_size=50,
+                              batch_size=25,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.05,
+                              val_data_fraction=0.00,
                               top_k=5)
         print "perf: " + str(perf)
         results.append(perf)
@@ -358,9 +357,9 @@ if __name__=="__main__":
                               n_epochs=2000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
-                              batch_size=50,
+                              batch_size=25,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.05,
+                              val_data_fraction=0.00,
                               top_k=5)
         print "perf: " + str(perf)
         results.append(perf)
