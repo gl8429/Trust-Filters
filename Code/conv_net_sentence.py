@@ -48,7 +48,7 @@ def train_conv_net(datasets,
                    sqr_norm_lim=9,
                    non_static=True,
                    val_data_fraction=0,
-                   top_k=1):
+                   top_k=5):
     """
     Train a simple conv net
     img_h = sentence length (padded where necessary)
@@ -145,9 +145,9 @@ def train_conv_net(datasets,
                                  allow_input_downcast=True)               
     train_model = theano.function([index], cost, updates=grad_updates,
           givens={
-            x: train_set_x[index*batch_size:(index+1)*batch_size],
-              y: train_set_y[index*batch_size:(index+1)*batch_size]},
-                                  allow_input_downcast = True)     
+            x: train_set_x[index * batch_size: (index + 1) * batch_size],
+              y: train_set_y[index * batch_size: (index + 1) * batch_size]},
+                                  allow_input_downcast=True)     
     test_pred_layers = []
     test_size = test_set_x.shape[0]
     test_layer0_input = Words[T.cast(x.flatten(),dtype="int32")].reshape((test_size,1,img_h,Words.shape[1]))
@@ -160,13 +160,17 @@ def train_conv_net(datasets,
     test_y_pred = classifier.predict_p(test_layer1_input)
     test_error = 1 - T.mean(T.any(T.eq(T.argsort(test_y_pred, axis=1)[:, -top_k:], y.dimshuffle(0, 'x')), axis=1))
     test_model_all = theano.function([x,y], test_error, allow_input_downcast = True)   
-    
+    test_y_pred_top1 = T.argmax(test_y_pred, axis=1)
+    test_error_top1 = T.mean(T.neq(test_y_pred_top1, y))
+    test_model_all_top1 = theano.function([x,y], test_error_top1, allow_input_downcast = True)
+
     #start training over mini-batches
     print '... training'
     epoch = 0
     best_val_perf = 0
     val_perf = 0
-    test_perf = 0       
+    test_perf = 0
+    top1_perf = 0       
     cost_epoch = 0    
     while (epoch < n_epochs):
         start_time = time.time()
@@ -187,13 +191,18 @@ def train_conv_net(datasets,
         if n_train_batches == n_batches: # No valid data
             test_loss = test_model_all(test_set_x,test_set_y)
             test_perf = 1 - test_loss
-            print('test perf: %.2f %%' %(test_perf*100))
+            top1_loss = test_model_all_top1(test_set_x, test_set_y)
+            top1_perf = 1 - top1_loss
+            print('test top %d perf: %.2f %%, top 1 perf: %.2f %%' %(top_k, test_perf*100, top1_perf*100))
+            print()
         elif val_perf >= best_val_perf:
             best_val_perf = val_perf
             test_loss = test_model_all(test_set_x,test_set_y)        
-            test_perf = 1 - test_loss   
-            print('Get best valid accuracy, test perf: %.2f %%' %(test_perf*100))      
-    return test_perf
+            test_perf = 1 - test_loss  
+            top1_loss = test_model_all_top1(test_set_x, test_set_y)
+            top1_perf = 1 - top1_loss   
+            print('Get best valid accuracy, test top %d perf: %.2f %%, top 1 perf: %.2f %%' %(top_k, test_perf*100, top1_perf*100))      
+    return test_perf, top1_perf
 
 def shared_dataset(data_xy, borrow=True):
         """ Function that loads the dataset into shared variables
@@ -327,13 +336,13 @@ if __name__=="__main__":
                               conv_non_linear="relu",
                               hidden_units=[100,6], 
                               shuffle_batch=True, 
-                              n_epochs=10000, 
+                              n_epochs=2000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.01,
-                              top_k=1)
+                              val_data_fraction=0.05,
+                              top_k=5)
         print "perf: " + str(perf)
         results.append(perf)
     else:
@@ -346,13 +355,13 @@ if __name__=="__main__":
                               conv_non_linear="relu",
                               hidden_units=[100,50], 
                               shuffle_batch=True, 
-                              n_epochs=10000, 
+                              n_epochs=2000, 
                               sqr_norm_lim=9,
                               non_static=non_static,
                               batch_size=50,
                               dropout_rate=[0.5],
-                              val_data_fraction=0.01,
-                              top_k=1)
+                              val_data_fraction=0.05,
+                              top_k=5)
         print "perf: " + str(perf)
         results.append(perf)
-    print str(np.mean(results))
+    #print str(np.mean(results))
