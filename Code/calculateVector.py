@@ -5,8 +5,8 @@ import gensim, logging
 import re
 nltk.internals.config_java(options='-xmx2G')
 # Set Environment
-os.environ["CLASSPATH"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/Trust-Filters/Code/stanford-ner-2014-06-16/stanford-ner.jar"
-os.environ["STANFORD_MODELS"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/Trust-Filters/Code/stanford-ner-2014-06-16/classifiers/"
+os.environ["CLASSPATH"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/stanford-package/stanford-ner-2014-06-16/stanford-ner.jar"
+os.environ["STANFORD_MODELS"] = "/Users/Lucifer/Documents/GraduateStudy/NLP/stanford-package/stanford-ner-2014-06-16/classifiers/"
 
 #st1 = st.StanfordNERTagger('english.all.3class.distsim.crf.ser.gz')
 #NER = ['O', 'LOCATION', 'PERSON', 'ORGANIZATION']
