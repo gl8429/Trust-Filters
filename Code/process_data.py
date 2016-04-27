@@ -44,8 +44,8 @@ def build_data_cv(fileName, fileType, classSelect = True):
             revs.append(datum)
     return revs, vocab
 
-def getW(fileName, wordNum):
-    w = np.zeros((wordNum, 301),dtype=np.float32)
+def getW(fileName, wordNum, k=301):
+    w = np.zeros((wordNum, k),dtype=np.float32)
     with open(fileName) as f:
         for i,line in enumerate(f):
             w[i,:]=line.split()
@@ -59,6 +59,24 @@ def getWordIdxMap(fileName):
             word_idx_map[line[ : len(line) - 1]] = index
             index += 1
     return word_idx_map
+
+# This function rescales word vectors last dimension (the NER label dimension) from 0-7 to 0 - 7 * 0.125
+def rescaleNerLabel(w, k=301):
+    size = len(w)
+    for i in range(size):
+        w[i][k-1] *= 0.125
+    return w
+
+# This function rescales word vectors to [-1, 1]
+def rescaleWordVectors(w, k=301):
+    size = len(w)
+    for i in range(size):
+        min_value = min(w[i][0:k-2])
+        max_value = max(w[i][0:k-2])
+        if max_value - min_value != 0:
+            w[i][0:k-2] = (w[i][0:k-2] - min_value) / (max_value - min_value) * 2.0 - 1.0
+        w[i][k-1] *= 0.125 #TODO: It's hard to determine what should we do to NER labels. Just rescale here
+    return w
 
 # This function add random vectors for those words occur in vocab at least min_df times but not in word_vecs
 # Input:
@@ -185,6 +203,8 @@ def main():
     test_word_idx_map = getWordIdxMap('index/' + test_suffix)
     
     W, word_idx_map = combineWordVectors(train_W, test_W, train_word_idx_map, test_word_idx_map, vocab)
+    W = rescaleNerLabel(W) #uncomment this line if you want to rescale NER label from 0-7 to 0-7*125
+    #W = rescaleWordVectors(W) #uncomment this line if you want to rescale whole vector
 
     rand_vecs = {}
     add_unknown_words(rand_vecs, vocab)
