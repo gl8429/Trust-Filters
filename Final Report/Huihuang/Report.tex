@@ -1,0 +1,174 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{iccv}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\iccvfinalcopy % *** Uncomment this line for the final submission
+
+\def\iccvPaperID{****} % *** Enter the ICCV Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ificcvfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Add Name Entity Recognizer to Convolutional Neural Network }
+
+\author{
+Guangyu Lin\\
+UTEID: gl8429\\
+{\tt\small glin@utexas.edu} \\
+\and
+Ge Gao\\
+UTEID: gg24984\\
+{\tt\small gegao1118@utexas.edu} \\
+\and
+Huihuang Zheng\\
+UTEID: hz4674\\
+{\tt\small huihuang@utexas.edu} \\
+}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+%\and
+%Second Author\\
+%Institution2\\
+%First line of institution2 address\\
+%\tt\small secondauthor@i2.org}
+%}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+TODO
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+
+\section{Introduction}
+TODO
+
+\section{Problem Definition and Algorithm}
+\subsection{Task Definition}
+TODO
+\subsection{Algorithm Definition}
+TODO
+
+
+
+
+\section{Experiment}
+\subsection{Methodology}
+
+\subsubsection{Dataset}
+Our method was evaluated by comparing accuracy in a question classification task named TREC \cite{li2006learning} with previous researchers' results. The task involves classifying a question into $k$ question types. They defined a two-layered taxonomy, which represents a  natural semantic classification for typical answers in the TREC task. The hierarchy contains 6 coarse classes (ABBREVIATION, ENTITY, DESCRIPTION, HUMAN, LOCATION and NUMERIC VALUE) and 50 fine classes. Each coarse  class contains a non-overlapping set of fine classes. We choose this dataset because of two reasons. The fact that Name Entity Recognizer can classify person, location may help us in this task. Second, in Kim's paper \cite{kim2014convolutional} and Li's paper \cite{li2006learning}, they also used this database and reported previous accuracy so it will be easy for us to compare. The TREC dataset has 5500 annotated questions for training and 500 questions as the test set.
+
+\subsubsection{Setup}
+We used \textit{word2vec} trained model from Mikolov \cite{mikolov2013efficient} on 100 billion words of Google News and from TODO: Guangyu please add the reference for word2vec. We built our framework using NER from Stanford NER software \cite{finkel2005incorporating} TODO: Guangyu, am I correct? 
+
+and deep learning tool Theano \cite{Bastien-Theano-2012}. Since Kim's work\cite{kim2014convolutional} has Github published code using Theano (\url{https://github.com/yoonkim/CNN_sentence}), our method which combines CNN and NER was extended from their code. 
+
+We compared our method with Kim's method of using CNN and previous best methods without using CNN in the TREC dataset. By comparing CNN and our CNN + NER method, we can evaluate the contribution of NER features in this task. In addition, because Kim's method didn't outperform previous methods without CNN, we need to compare previous methods.
+
+\subsubsection{Evaluation}
+In this paper, we use same metric as previous researchers. We count the number of correctly classified questions by two standards. Top-1 accuracy and top-5 accuracy. We define
+$$ 
+I_{i,j} = 
+\left\{ 
+  \begin{array}{ll}
+    1 & \parbox{5cm}{Correct label of the $i$-th question is output within rank $j$ }\\
+    \\
+    0 & \parbox{3cm}{otherwise}
+  \end{array} 
+\right. 
+$$
+Here, classifiers will give $j$ labels for the $i$-th question. If the correct label for question $i$ is among those $j$ labels, $I_{i,j}$ will be set to 1. Top 1 accuracy is defined as $j = 1$, which is a usual precision definition. Top 5 accuracy is defined as $j = 5$, which allows multi-labels for classifiers. Formally, if we have n test samples, top-$k $ accuracy is defined as
+$$
+P_k = \frac{1}{n}\sum_{i=1}^{n} I_{i,k} 
+$$
+
+\subsection{Experimental Results}
+We reimplemented Kim's CNN method as baseline. We train Kim's CNN and our CNN + NER in 2000 epochs. Then, we record the best accuracy in the 2000 epochs. We compared with two methods without using CNN: 1, Hierarchical classifier by Li and Roth\cite{li2002learning} uses features unigram, POS, head chunks, NE, and semantic relations. 2, SVM$_s$ uses ni-bi-trigrams, wh word, head word, POS, parser, hypernyms, and 60 hand-coded rules as features from Silva et al \cite{silva2011symbolic}, which is the state-of-the-art in the best of our knowledge. Our test result for coarse classes was shown in table \ref{coarse}. Our test result for fine classes was shown in table \ref{fine}
+
+\begin{table}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{|c|c|c|}
+  \hline  
+  Method & Top-1 Accuracy & Top-5 Accuracy\\
+  \hline
+  Hierarchical classifier\cite{li2002learning} & 91.0 & 98.8 \\
+  SVM$_S$ \cite{silva2011symbolic} & 95.0 & - \\
+  %DCNN \cite{kalchbrenner2014convolutional} & 93.0 & - \\
+  CNN \cite{kim2014convolutional} & 91.8 & 100.0 \\
+  \hline
+  CNN + NER (ours) & 91.8 & 100.0 \\
+  \hline
+\end{tabular}
+}
+\caption{Top-1 and top-5 accuracy for TREC coarse question types. }
+\label{coarse}
+\end{table}
+
+\begin{table}
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{|c|c|c|}
+  \hline  
+  
+  Method & Top-1 accuracy & Top-5 accuracy\\
+  \hline
+  Hierarchical classifier\cite{li2002learning} & 84.20 & 95.00 \\
+  SVM$_S$ \cite{silva2011symbolic} & 90.8 & - \\
+  CNN \cite{kim2014convolutional} & 80.2 & 90.60 \\
+  \hline
+  CNN + NER (ours) & 81.0 &  90.60 \\ 
+  \hline
+\end{tabular}
+}
+\caption{Top-1 and top-5 accuracy for TREC coarse question types.}
+\label{fine}
+\end{table}
+
+\subsection{Discussion}
+In table \ref{coarse}, we can see our CNN + NER model doesn't improve accuracy from Kim's only CNN model. However, when it is in a more complexed situation, the fine task in table \ref{fine}, we can see our model can slightly improved the top-1 accuracy (81.0 vs 80.2 in only CNN model). 
+
+Comparing to non-neural approaches methods, which needs manually engineered features. CNN's approach is easier to train. Our method has higher top-1 and top-5 accuracy than the Hierarchical classifier method in coarse task. However in fine task, Li and Roth's method outperforms ours. According to the fact that we add NER's feature to CNN and improved the accuracy of fine task, we think that demonstrates the human defined features are helpful in fine types classification. 
+
+Our CNN + NER model has not got comparable accuracy to the work of Silva et al. \cite{silva2011symbolic}. However, their classifier involves a large number of hand-code resources. For example, they have 60 hand-coded rules. CNN's training is simpler because we don't need those manually engineered features. 
+
+\section{Related Work}
+
+\section{Future Work}
+This time we tried add NER features to CNN and improved CNN question classifier slightly, we think if we add more features, the CNN classifier can be more accurate.
+
+\section{Conclusion}
+In this work, we add Name Entity Recognizor (NER) as one dimension number to \textit{word2vec} expression. The modified expression can be used for training a CNN for NLP tasks involving name entity. Our experiment shows that our CNN + NER model can improve the accuracy of question type classification task compared to only CNN method. Although our method still can not get comparable performance of the state-of-the-art work, the state-of-the-art work needs a large number of hand-code resources. Our method is easier to train.
+%-------------------------------------------------------------------------
+
+
+
+{\small
+\nocite{*}
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}

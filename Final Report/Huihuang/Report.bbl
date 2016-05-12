@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}\itemsep=-1pt
+
+\bibitem{Bastien-Theano-2012}
+F.~Bastien, P.~Lamblin, R.~Pascanu, J.~Bergstra, I.~J. Goodfellow, A.~Bergeron,
+  N.~Bouchard, and Y.~Bengio.
+\newblock Theano: new features and speed improvements.
+\newblock Deep Learning and Unsupervised Feature Learning NIPS 2012 Workshop,
+  2012.
+
+\bibitem{finkel2005incorporating}
+J.~R. Finkel, T.~Grenager, and C.~Manning.
+\newblock Incorporating non-local information into information extraction
+  systems by gibbs sampling.
+\newblock In {\em Proceedings of the 43rd Annual Meeting on Association for
+  Computational Linguistics}, pages 363--370. Association for Computational
+  Linguistics, 2005.
+
+\bibitem{kalchbrenner2014convolutional}
+N.~Kalchbrenner, E.~Grefenstette, and P.~Blunsom.
+\newblock A convolutional neural network for modelling sentences.
+\newblock {\em arXiv preprint arXiv:1404.2188}, 2014.
+
+\bibitem{kim2014convolutional}
+Y.~Kim.
+\newblock Convolutional neural networks for sentence classification.
+\newblock {\em arXiv preprint arXiv:1408.5882}, 2014.
+
+\bibitem{li2002learning}
+X.~Li and D.~Roth.
+\newblock Learning question classifiers.
+\newblock In {\em Proceedings of the 19th international conference on
+  Computational linguistics-Volume 1}, pages 1--7. Association for
+  Computational Linguistics, 2002.
+
+\bibitem{li2006learning}
+X.~Li and D.~Roth.
+\newblock Learning question classifiers: the role of semantic information.
+\newblock {\em Natural Language Engineering}, 12(3):229--249, 2006.
+
+\bibitem{mikolov2013efficient}
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{roth2001learning}
+D.~Roth, G.~K. Kao, X.~Li, R.~Nagarajan, V.~Punyakanok, N.~Rizzolo, W.-t. Yih,
+  C.~O. Alm, and L.~G. Moran.
+\newblock Learning components for a question-answering system.
+\newblock In {\em TREC}, 2001.
+
+\bibitem{silva2011symbolic}
+J.~Silva, L.~Coheur, A.~C. Mendes, and A.~Wichert.
+\newblock From symbolic to sub-symbolic information in question classification.
+\newblock {\em Artificial Intelligence Review}, 35(2):137--154, 2011.
+
+\bibitem{voorhees2000overview}
+E.~M. Voorhees and D.~Tice.
+\newblock Overview of the trec-9 question answering track.
+\newblock In {\em TREC}, 2000.
+
+\end{thebibliography}
