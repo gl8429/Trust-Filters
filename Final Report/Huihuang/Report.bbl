@@ -59,6 +59,10 @@ T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
 \newblock Efficient estimation of word representations in vector space.
 \newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
 
+\bibitem{mikolov2014word2vec}
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
+\newblock word2vec, 2014.
+
 \bibitem{nadeau2007survey}
 D.~Nadeau and S.~Sekine.
 \newblock A survey of named entity recognition and classification.
