@@ -7,6 +7,17 @@ F.~Bastien, P.~Lamblin, R.~Pascanu, J.~Bergstra, I.~J. Goodfellow, A.~Bergeron,
 \newblock Deep Learning and Unsupervised Feature Learning NIPS 2012 Workshop,
   2012.
 
+\bibitem{berwick1991principle}
+R.~C. Berwick, S.~P. Abney, and C.~Tenny.
+\newblock {\em Principle-based parsing: Computation and psycholinguistics},
+  volume~44.
+\newblock Springer Science \& Business Media, 1991.
+
+\bibitem{carlson1999snow}
+A.~Carlson, C.~Cumby, J.~Rosen, and D.~Roth.
+\newblock The snow learning architecture.
+\newblock Technical report, Technical report UIUCDCS, 1999.
+
 \bibitem{finkel2005incorporating}
 J.~R. Finkel, T.~Grenager, and C.~Manning.
 \newblock Incorporating non-local information into information extraction
@@ -41,6 +52,16 @@ X.~Li and D.~Roth.
 T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
 \newblock Efficient estimation of word representations in vector space.
 \newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{nadeau2007survey}
+D.~Nadeau and S.~Sekine.
+\newblock A survey of named entity recognition and classification.
+\newblock {\em Lingvisticae Investigationes}, 30(1):3--26, 2007.
+
+\bibitem{roth1998learning}
+D.~Roth.
+\newblock Learning to resolve natural language ambiguities: A unified approach.
+\newblock In {\em AAAI/IAAI}, pages 806--813, 1998.
 
 \bibitem{roth2001learning}
 D.~Roth, G.~K. Kao, X.~Li, R.~Nagarajan, V.~Punyakanok, N.~Rizzolo, W.-t. Yih,
