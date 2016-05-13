@@ -1,6 +1,6 @@
 Execution file:
 	calculateVector.py :- prepare data for processing (all results are prepared)
-	retrieveLabeled.py :- retrieve classes and fines (all results is in the raw_data folder)
+	retrieveLabeled.py :- retrieve classes and fines (all results are in the raw_data folder)
         *process_data.py :- prepare data for CNN (Change some code for your CNN), run as below, you should give the file that you want to run.
 			You should also load the dataset into the same directory of process_data.py
 	conv_net_sentence.py :- interface for training CNN
