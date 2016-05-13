@@ -78,14 +78,41 @@ The main contribution of this work is that our method, which adds Name Entity Re
 \subsection{Task Definition}
 
 \subsubsection{Named Entity Recognition}
-Named Entity Recognition (NER) labels sequences of words in a text which are the names of things, such as person and company names, or gene and protein names. (See Tabel)
+Named Entity Recognition (NER) labels sequences of words in a text which are the names of things, such as person and company names, or gene and protein names. All named entities are self-explanatory in Tabel ~\ref{tab:1}. As named entity recognition is frequently a prelude to identifying relations in Information Extraction, it can also contribute to other tasks. For example in our Question Answering(QA), we can improve the accuracy of our question classifiers by recovering not whole pages, but just those parts which contain an answer to the user's question. For example, we have a question, \\\\{\bf "How did serfdom develop in and then leave Russia ?"} \\\\Although this is a particular question about a description of manner, this is also a question to query something related to Russia, which is a named entity - LOCATION. While searching the correct answer, it will help us skip very wrong answer if we can combine with the location named entity. Therefore we would like to use Named Entity Recogniser to preprocess our data in order to help our classifier skip very wrong answer.
+	\begin{table}[!hbt]
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{|c|c|}
+			\hline
+			NE Type & Examples \\ \hline
+			  ORGANIZATION  & Georgia-Pacific Corp., WHO \\ \hline
+			  PERSON  & Eddy Bonte, President Obama \\ \hline
+			  LOCATION  & Murray River, Mount Everest \\ \hline
+			  DATE  & June, 2008-06-29 \\ \hline
+			  TIME  & two fifty a m, 1:30 p.m. \\ \hline
+			  MONEY  & 175 million Canadian Dollars, GBP 10.40 \\ \hline
+			  PERCENT  & twenty pct, 18.75 \%\\ \hline
+			 \hline
+		\end{tabular}
+		}
+		\caption{NER}
+		\label{tab:1}
+	\end{table}
+
+In Figure.~\ref{fig:pipeline}, we present a simple pipeline architecture for an named entity recognition system. However, we would like to use Stanford Named Entity Recognizer (NER) to retrieve named entity from our sentences. Because they train a large corpus and have a good performance.
+\begin{figure}
+\includegraphics[width=\linewidth]{pipeline}
+\caption{Simple Pipeline Architecture for an Named Entity Recognition System. }
+\label{fig:pipeline}
+\end{figure}
 
 \subsubsection{Word2Vec}
 
 \subsubsection{Convolutional neural network}
 
-\subsection{Algorithm}
 
+
+
+\subsection{Algorithm}
 
 
 
