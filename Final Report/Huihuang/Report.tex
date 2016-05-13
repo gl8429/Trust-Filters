@@ -76,7 +76,8 @@ The main contribution of this work is that our method, which adds Name Entity Re
 
 \section{Problem Definition and Algorithm}
 \subsection{Task Definition}
-
+TODO
+\subsection{Algorithm}
 \subsubsection{Named Entity Recognition}
 Named Entity Recognition (NER) \cite{finkel2005incorporating}labels sequences of words in a text which are the names of things, such as person and company names, or gene and protein names. All named entities are self-explanatory in Tabel ~\ref{tab:1}. As named entity recognition is frequently a prelude to identifying relations in Information Extraction, it can also contribute to other tasks. For example in our Question Answering(QA), we can improve the accuracy of our question classifiers by recovering not whole pages, but just those parts which contain an answer to the user's question. For example, we have a question, \\\\{\bf "How did serfdom develop in and then leave Russia ?"} \\\\Although this is a particular question about a description of manner, this is also a question to query something related to Russia, which is a named entity - LOCATION. While searching the correct answer, it will help us skip very wrong answer if we can combine with the location named entity. Therefore we would like to use Named Entity Recogniser to preprocess our data in order to help our classifier skip very wrong answer.
 	\begin{table}[!hbt]
@@ -139,7 +140,7 @@ Above we describe the process how one feature was extracted by convolutional neu
 \end{figure*}
 
 
-\subsection{Algorithm}
+\subsubsection{Our Approach}
 We add \textit{Name Entity Recognizor} (NER) to the word expression $v$. Let our word vector be $v' \in \mathbb{R}^{k+1}$. We are going to add one dimension to \textit{word2vec} expression. Let
 $$v' = [v, e]$$
 where $v$ is the output vector of \textit{word2vec} and $e$ is the label number indicating the named entity. Then we will modify CNN architectures: add one input dimension and keep others the same as previous CNN. Suppose previous CNN convolutional filters take input of $\mathbb{R}^{kh}$ and we will change input size into $\mathbb{R}^{(k+1)h}$. 
