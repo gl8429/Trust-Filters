@@ -1,16 +1,12 @@
 Execution file:
-	calculateVector.py :- prepare data for processing (You don't need to run, all results is in the dropbox below)
-	retrieveLabeled.py :- retrieve classes and fines (You don't need to run, all results is in the raw_data folder)
-	NER.ipynb :- expirment process (You don't need to run, unless you want to have a look at the process of generating the dataset)
+	calculateVector.py :- prepare data for processing (all results are prepared)
+	retrieveLabeled.py :- retrieve classes and fines (all results is in the raw_data folder)
         *process_data.py :- prepare data for CNN (Change some code for your CNN), run as below, you should give the file that you want to run.
-			You should also down load the dataset below(dropbox share folder) into the same directory of process_data.py
+			You should also load the dataset into the same directory of process_data.py
 	conv_net_sentence.py :- interface for training CNN
-	run.sh :- bash file that you can run process_data.py and conv_net_sentence.py. You can see an example of how to call
-                        process_data.py and conv_net_sentence.py here or run the bash file directly	
+	run.sh :- bash file that you can run process_data.py and conv_net_sentence.py. There is an example to show how to call process_data.py and conv_net_sentence.py here or run the bash file directly	
 
-Data Folder on Dropbox:
-	https://www.dropbox.com/sh/i2nunof1baersai/AACrKWlUMSwzLbFSC_53dq5ha?dl=0
-	You can download both raw data and our converted data from the link above.
+Data Folder:
 	`raw_data` :- raw labeled data
 	`model` :- the model trained by Word2Vector
 	`vectors` :- vectors with additional NER bit
@@ -23,8 +19,8 @@ Data Folder on Dropbox:
 Usage:
 	process_data.py:
 		python process_data.py train_raw_data_file_path test_raw_data_file_path "-type"/"-fine"
-                a example for train_raw_data_file_path is raw_data/train5500.txt 
-		a example for train_raw_data_file_path is raw_data/test.txt
+                an example for train_raw_data_file_path is raw_data/train5500.txt 
+		an example for train_raw_data_file_path is raw_data/test.txt
 		last parameter is string -type or -fine. -type means we are going to do experiments for 6 types and -fine means fine types for 50
 
 	conv_net_sentence.py:
@@ -43,5 +39,3 @@ Usage:
 			epoch: 3, training time: 16.16 secs, train perf: 91.87 %, val perf: 81.37 %
 
 	You can also run in shell "bash run.sh" to run our code.
-
-                
