@@ -117,11 +117,27 @@ The nations of Scandinavia and several wealthy, northern European, Germanic coun
 In our experiment, we would like to use word2vec to train our sentence and get each word as a vector v, then prepare it for convolutional neural network.
 
 \subsubsection{Convolutional neural network}
+After we get vector $v$ for each word where the $v \in \mathbb{R}^k$ is the $k$-dimensional word vector. A sentence of length $n$ (padded where necessary) is represented as concatenation of word vectors:
+$$v_{1:n} = v_1 \oplus v_2 \oplus v_3 ... \oplus v_n$$
+where $v_i$ is corresponding to the $i$-th word in the sentence. 
 
+In general, let $v_{i:i+j}$ refers to the concatenation of word vectors $v_i, v_{i+1}, ..., v_{i+j}$. A convolutional filter of Convolutional Neural Network (CNN)  \cite{kim2014convolutional} takes fixed size of input of $\mathbb{R}^{kh}$. The filter is applied to each possible window of words of the sentence $\{x_{1:h}, x_{2:h+1}, ..., x_{n_h+1:n}\}$ and extract features, do max pooling, and full connected layer to get output of CNN.
 
 
 
 \subsection{Algorithm}
+We add \textit{Name Entity Recognizor} (NER) to the word expression $v$. Let our word vector be $v' \in \mathbb{R}^{k+1}$. We are going to add one dimension to \textit{word2vec} expression. Let
+$$v' = [v, e]$$
+where $v$ is the output vector of \textit{word2vec} and $e$ is the label number indicating the named entity. Then we will modify CNN architectures: add one input dimension and keep others the same as previous CNN. Suppose previous CNN convolutional filters take input of $\mathbb{R}^{kh}$ and we will change input size into $\mathbb{R}^{(k+1)h}$. 
+
+Figure \ref{process} shows an figure illustration of our approach.
+ 
+\begin{figure}
+  \includegraphics[width=\linewidth]{process.png}
+  \caption{Our Approach: Red Rectangle marked the traditional method and Blue Boxes are where we changed}
+  \label{process}
+\end{figure}
+
 
 
 
