@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}\itemsep=-1pt
 
+\bibitem{bahrampour2015comparative}
+S.~Bahrampour, N.~Ramakrishnan, L.~Schott, and M.~Shah.
+\newblock Comparative study of caffe, neon, theano, and torch for deep
+  learning.
+\newblock {\em arXiv preprint arXiv:1511.06435}, 2015.
+
 \bibitem{Bastien-Theano-2012}
 F.~Bastien, P.~Lamblin, R.~Pascanu, J.~Bergstra, I.~J. Goodfellow, A.~Bergeron,
   N.~Bouchard, and Y.~Bengio.

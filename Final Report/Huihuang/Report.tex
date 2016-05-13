@@ -106,6 +106,15 @@ In Figure.~\ref{fig:pipeline}, we present a simple pipeline architecture for an 
 \end{figure}
 
 \subsubsection{Word2Vec}
+Word2vec is a two-layer neural net that processes text. Its input is a text corpus and its output is a set of vectors: feature vectors for words in that corpus. We use word2vec to turn text into a numerical form that convonlutional neural network can understand. The output of the word2vec is a vocabulary in which each item has a vector attached to it. We can also easily store this model and reload this model in the later. In order to visualise the result of word2vec, we present an example on the website. Here?s a list of words associated with "Sweden" using Word2vec, in order of proximity, which shows in Figure.~\ref{fig:word2vec}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{word2vec}
+\caption{Simple Pipeline Architecture for an Named Entity Recognition System. }
+\label{fig:word2vec}
+\end{figure}
+The nations of Scandinavia and several wealthy, northern European, Germanic countries are among the top nine. \cite{bahrampour2015comparative}
+In our experiment, we would like to use word2vec to train our sentence and get each word as a vector v, then prepare it for convolutional neural network.
 
 \subsubsection{Convolutional neural network}
 
