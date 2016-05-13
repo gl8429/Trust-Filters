@@ -205,7 +205,7 @@ def main():
     test_word_idx_map = getWordIdxMap('index/' + test_suffix)
     
     W, word_idx_map = combineWordVectors(train_W, test_W, train_word_idx_map, test_word_idx_map, vocab)
-    W = rescaleNerLabel(W) #uncomment this line if you want to rescale NER label from 0-7 to 0-7*125
+    #W = rescaleNerLabel(W) #uncomment this line if you want to rescale NER label from 0-7 to 0-7*125
     #W = rescaleWordVectors(W) #uncomment this line if you want to rescale whole vector
 
     rand_vecs = {}

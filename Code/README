@@ -10,7 +10,7 @@ Execution file:
 
 Data Folder on Dropbox:
 	https://www.dropbox.com/sh/i2nunof1baersai/AACrKWlUMSwzLbFSC_53dq5ha?dl=0
-	You can download the data from the link above.
+	You can download both raw data and our converted data from the link above.
 	`raw_data` :- raw labeled data
 	`model` :- the model trained by Word2Vector
 	`vectors` :- vectors with additional NER bit
@@ -25,7 +25,7 @@ Usage:
 		python process_data.py train_raw_data_file_path test_raw_data_file_path "-type"/"-fine"
                 a example for train_raw_data_file_path is raw_data/train5500.txt 
 		a example for train_raw_data_file_path is raw_data/test.txt
-		last parameter is string -type or -fine. -type means we are going to do experiments for 6 types and -fine means fine type for 50
+		last parameter is string -type or -fine. -type means we are going to do experiments for 6 types and -fine means fine types for 50
 
 	conv_net_sentence.py:
                 See calling of train_conv_netin in main function of conv_net_sentence.py to change the parameters of CNN.
@@ -41,5 +41,7 @@ Usage:
 			epoch: 1, training time: 16.49 secs, train perf: 81.80 %, val perf: 78.32 %
 			epoch: 2, training time: 16.12 secs, train perf: 82.53 %, val perf: 76.74 %
 			epoch: 3, training time: 16.16 secs, train perf: 91.87 %, val perf: 81.37 %
+
+	You can also run in shell "bash run.sh" to run our code.
 
                 
